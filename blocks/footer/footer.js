@@ -21,12 +21,16 @@ export default async function init(el) {
 
   const inner = document.createElement('div');
   inner.className = 'rbc-footer';
-  sections.forEach((section) => inner.append(section));
+  const rows = [...sections];
+  rows.forEach((section) => inner.append(section));
 
-  inner.querySelector('.footer-links')?.classList.add('rbc-footer-links');
-  inner.querySelector('.footer-social')?.classList.add('rbc-footer-social');
-  inner.querySelector('.footer-legal')?.classList.add('rbc-footer-legal');
-  inner.querySelector('.footer-copyright')?.classList.add('rbc-footer-copyright');
+  // Sections are positional (authoring classes are stripped by DA/EDS):
+  // 0 = link columns, 1 = social, 2 = legal, 3 = copyright.
+  const [links, social, legal, copyright] = rows;
+  links?.classList.add('rbc-footer-links');
+  social?.classList.add('rbc-footer-social');
+  legal?.classList.add('rbc-footer-legal');
+  copyright?.classList.add('rbc-footer-copyright');
 
   el.append(inner);
 }

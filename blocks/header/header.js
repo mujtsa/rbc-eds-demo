@@ -45,12 +45,15 @@ export default async function init(el) {
 
   const nav = document.createElement('nav');
   nav.className = 'rbc-header';
-  sections.forEach((section) => nav.append(section));
+  const rows = [...sections];
+  rows.forEach((section) => nav.append(section));
 
-  const utility = nav.querySelector('.nav-utility');
+  // Sections are positional (authoring classes are stripped by DA/EDS):
+  // 0 = utility bar, 1 = brand row, 2 = product (credit-cards) nav.
+  const [utility, brand, product] = rows;
+
   if (utility) utility.classList.add('rbc-utility-row');
 
-  const brand = nav.querySelector('.nav-brand');
   if (brand) {
     brand.classList.add('rbc-brand-row');
     // Mobile hamburger toggle
@@ -66,7 +69,6 @@ export default async function init(el) {
     brand.querySelectorAll(':scope > ul > li').forEach((li) => decorateDropdown(li, nav));
   }
 
-  const product = nav.querySelector('.nav-product');
   if (product) {
     product.classList.add('rbc-product-row');
     product.querySelectorAll(':scope > ul > li').forEach((li) => decorateDropdown(li, nav));
