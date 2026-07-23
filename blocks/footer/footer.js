@@ -11,7 +11,9 @@ async function fetchFragment(path) {
   if (!resp.ok) throw Error(`Couldn't fetch ${path}`);
   const html = await resp.text();
   const doc = new DOMParser().parseFromString(html, 'text/html');
-  return doc.body.querySelectorAll('main > div');
+  // Fragment .plain.html places sections directly under <body> (no <main>).
+  const sections = doc.body.querySelectorAll(':scope > div');
+  return sections.length ? sections : doc.body.querySelectorAll('main > div');
 }
 
 export default async function init(el) {

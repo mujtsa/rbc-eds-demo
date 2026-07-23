@@ -17,7 +17,9 @@ async function fetchFragment(path) {
   doc.querySelectorAll('img[src^="./"]').forEach((img) => {
     img.src = new URL(img.getAttribute('src'), new URL(dir, window.location)).href;
   });
-  return doc.body.querySelectorAll('main > div');
+  // Fragment .plain.html places sections directly under <body> (no <main>).
+  const sections = doc.body.querySelectorAll(':scope > div');
+  return sections.length ? sections : doc.body.querySelectorAll('main > div');
 }
 
 function closeAllMenus(root) {
