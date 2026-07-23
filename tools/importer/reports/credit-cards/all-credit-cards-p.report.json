@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.rbcroyalbank.com/credit-cards/all-credit-cards-p.html",
+  "path": "credit-cards/all-credit-cards-p",
+  "timestamp": "2026-07-23T18:45:28.509Z",
+  "title": "Browse Different Types of Credit Cards | RBC Royal Bank of Canada",
+  "template": "all-credit-cards",
+  "blocks": [
+    "columns-filter",
+    "columns-toolbar",
+    "cards-product",
+    "cards-callout"
+  ]
+}

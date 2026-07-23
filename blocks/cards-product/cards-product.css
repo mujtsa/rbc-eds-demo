@@ -1,0 +1,216 @@
+/* cards-product — RBC credit-card product tiles
+ * Values extracted from source computed styles:
+ * https://www.rbcroyalbank.com/credit-cards/all-credit-cards-p.html #card-grid-container
+ */
+
+/* Grid of card tiles (mobile-first: single column) */
+.cards-product > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+/* Card tile */
+.cards-product > ul > li {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  border: 1px solid rgb(224 224 224);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Image cell — light blue-grey backdrop, image centered */
+.cards-product .cards-product-card-image {
+  background-color: rgb(243 247 248);
+  text-align: center;
+  padding: 16px 0;
+  line-height: 0;
+}
+
+.cards-product .cards-product-card-image picture {
+  display: inline-block;
+}
+
+.cards-product .cards-product-card-image img {
+  width: 200px;
+  max-width: 60%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Text cell */
+.cards-product .cards-product-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 24px 20px;
+}
+
+/* Badge (e.g. "AWARD WINNING") — borderless white caption, matches source
+ * .card-image-caption (12px / 500 / rgb(37,37,37), no border, no radius) */
+.cards-product .cards-product-card-body p.cards-product-badge {
+  align-self: flex-start;
+  margin: 0 0 12px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--text-color);
+  background-color: rgb(255 255 255);
+  border: 0;
+  border-radius: 0;
+}
+
+/* Title */
+.cards-product .cards-product-card-body h3 {
+  margin: 0 0 8px;
+  font-family: var(--heading-font-family);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  color: rgb(31 31 31);
+}
+
+/* Body paragraphs (default) */
+.cards-product .cards-product-card-body p {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgb(31 31 31);
+}
+
+/* Annual fee paragraph — matches source $120 value (20px / 300 / rgb(31,31,31)).
+ * NOTE: source splits this into a small grey "Annual Fee" label (11px / rgb(88,88,88))
+ * above a larger value; here the text is authored as one line so it renders uniformly. */
+.cards-product .cards-product-annual-fee {
+  margin: 0 0 15px;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 32px;
+  color: rgb(31 31 31);
+}
+
+/* Offer box — yellow-bordered rounded container with pill caption */
+.cards-product .cards-product-offer {
+  position: relative;
+  margin: 6px 0 15px;
+  padding: 22px 16px 16px;
+  border: 1px solid rgb(255 181 0);
+  border-radius: 8px;
+}
+
+.cards-product .cards-product-offer-caption {
+  position: absolute;
+  top: -11px;
+  left: 16px;
+  margin: 0;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--text-color);
+  background-color: rgb(255 186 0);
+  border-radius: 4px;
+}
+
+.cards-product .cards-product-offer-content {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgb(31 31 31);
+}
+
+/* Offer highlight (e.g. "55,000 Avion points") — source renders at weight 500 */
+.cards-product .cards-product-offer-content strong {
+  font-weight: 500;
+}
+
+/* Feature & rate lists */
+.cards-product .cards-product-card-body ul {
+  margin: 0 0 15px;
+  padding-inline-start: 20px;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--text-color);
+}
+
+.cards-product .cards-product-card-body ul li {
+  margin-block: 8px;
+  line-height: 24px;
+}
+
+/* Divider before the rates list (second list) */
+.cards-product .cards-product-card-body ul + ul {
+  border-top: 1px solid rgb(196 200 204);
+  padding-top: 15px;
+}
+
+/* Legal superscript links stay inline and subtle */
+.cards-product .cards-product-card-body sup a,
+.cards-product .cards-product-card-body a sup {
+  font-size: 10px;
+}
+
+/* CTA links — keep RBC link styling */
+.cards-product .cards-product-card-body > p a {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.cards-product .cards-product-card-body > p a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+/* Compare + View links: centered */
+.cards-product .cards-product-card-body > p:has(a) {
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+/* Push the Apply bar to the bottom of the card and bleed to card edges */
+.cards-product .cards-product-card-body .cards-product-apply {
+  margin: auto -20px -24px;
+  padding-top: 15px;
+}
+
+/* Apply Now — full-width blue footer bar */
+.cards-product .cards-product-card-body .cards-product-apply a {
+  display: block;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(255 255 255);
+  background-color: var(--link-color);
+  border-radius: 0 0 8px 8px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.cards-product .cards-product-card-body .cards-product-apply a:hover {
+  color: rgb(255 255 255);
+  background-color: var(--link-hover-color);
+  text-decoration: none;
+}
+
+/* Responsive grid: 2-up on tablet, 3-up on wide desktop */
+@media (width >= 700px) {
+  .cards-product > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 1200px) {
+  .cards-product > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

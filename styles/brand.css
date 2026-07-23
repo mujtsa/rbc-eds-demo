@@ -1,0 +1,30 @@
+/*
+ * brand.css — RBC Royal Bank brand tokens
+ * Extracted from https://www.rbcroyalbank.com/credit-cards/all-credit-cards-p.html
+ * Heading font "RBCDisplay" is proprietary; using a clean sans-serif fallback.
+ * Body font "Roboto" is loaded from Google Fonts (see head.html).
+ */
+
+:root {
+  --heading-font-family: "RBCDisplay", "Roboto", "Helvetica Neue", arial, sans-serif;
+  --body-font-family: "Roboto", "Helvetica Neue", arial, sans-serif;
+
+  --background-color: rgb(255 255 255);
+  --text-color: rgb(37 37 37);
+  --link-color: rgb(0 106 195);
+  --link-hover-color: rgb(35 82 124);
+
+  /* section variants */
+  --section-light-bg: rgb(237 247 252);
+
+  --section-padding: 48px;
+  --nav-height: 30px;
+
+  /* heading sizes (desktop) */
+  --heading-size-xxl: 40px;
+  --heading-size-xl: 36px;
+  --heading-size-l: 24px;
+  --heading-size-m: 24px;
+  --heading-size-s: 18px;
+  --heading-size-xs: 16px;
+}

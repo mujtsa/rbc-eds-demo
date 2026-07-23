@@ -1,366 +1,319 @@
 header {
-  --logo-width: 40px;
-  --logo-height: 40px;
-  --mega-columns: 4;
-
   display: block;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  overflow: hidden;
-  max-height: var(--header-height);
-  background-color: light-dark(var(--color-light), var(--color-dark));
+  height: auto;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
+}
 
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.rbc-header {
+  font-family: var(--body-font-family);
+}
+
+/* Push page content below the 3-row fixed header (utility 30 + brand 64 + product 60). */
+body {
+  --header-height: 154px;
+}
+
+.rbc-header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rbc-header li,
+.rbc-header p {
+  margin: 0;
+}
+
+.rbc-header a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* --- Row 0: utility bar --- */
+.rbc-utility-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0051a5;
+  padding: 0 24px;
+  height: 30px;
+  font-size: 12px;
+}
+
+.rbc-utility-row ul {
+  display: flex;
+  gap: 18px;
+}
+
+.rbc-utility-row a {
+  color: #fff;
+  line-height: 30px;
+}
+
+.rbc-utility-row a:hover {
+  text-decoration: underline;
+}
+
+/* --- Row 1: main brand row --- */
+.rbc-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 24px;
+  height: 64px;
+}
+
+.rbc-brand-row > p:first-of-type a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 500;
+  color: #005daa;
+  white-space: nowrap;
+}
+
+.rbc-brand-row > p:first-of-type img {
+  width: 36px;
+  height: 36px;
+}
+
+.rbc-brand-row > ul {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex: 1;
+}
+
+.rbc-brand-row > ul > li > p > a,
+.rbc-brand-row > ul > li > p {
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  line-height: 64px;
+  color: var(--text-color);
+}
+
+.rbc-brand-row > ul + ul {
+  flex: 0 0 auto;
+  gap: 20px;
+  white-space: nowrap;
+}
+
+.rbc-brand-row > ul + ul a {
+  line-height: 64px;
+}
+
+.rbc-brand-row .sign-in {
+  display: inline-block;
+  background-color: #005daa;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.rbc-brand-row .sign-in:hover {
+  background-color: #004a87;
+}
+
+/* --- Row 2: product (credit-cards) nav --- */
+.rbc-product-row {
+  display: flex;
+  background-color: #fafafa;
+  border-top: 1px solid #e0e0e0;
+  padding: 0 24px;
+  height: 60px;
+}
+
+.rbc-product-row > ul {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.rbc-product-row > ul > li > p > a,
+.rbc-product-row > ul > li > p {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 60px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.rbc-product-row > ul > li:first-child > p > a {
+  color: #005daa;
+  font-weight: 700;
+}
+
+/* --- Dropdowns (both rows) --- */
+.rbc-header .has-dropdown {
+  position: relative;
+}
+
+.rbc-header .has-dropdown > ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 240px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 6px 16px rgb(0 0 0 / 12%);
+  padding: 8px 0;
+  z-index: 20;
+}
+
+.rbc-header .has-dropdown.is-open > ul {
+  display: block;
+}
+
+.rbc-header .has-dropdown > ul > li > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--text-color);
+}
+
+.rbc-header .has-dropdown > ul > li > a:hover {
+  background-color: #f0f7fc;
+  color: #005daa;
+}
+
+.rbc-header .has-dropdown > ul img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* --- Mobile hamburger toggle (hidden on desktop) --- */
+.rbc-menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.rbc-menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #005daa;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.rbc-menu-toggle.is-active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.rbc-menu-toggle.is-active span:nth-child(2) {
+  opacity: 0;
+}
+
+.rbc-menu-toggle.is-active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Mobile layout --- */
+@media (width < 900px) {
+  body {
+    --header-height: 64px;
   }
 
-  li,
-  p {
-    margin: 0;
+  header {
+    background-color: #fff;
   }
 
-  a {
-    text-decoration: none;
+  header.is-mobile-open {
+    max-height: 100vh;
+    overflow-y: auto;
   }
 
-  .btn {
-    margin-block: 6px;
+  .rbc-header {
+    background-color: #fff;
   }
 
-  .header-content {
-    display: grid;
-    grid-template-areas:
-      "brand"
-      "nav"
-      "actions";
-    grid-template-rows: var(--header-height) auto 1fr;
+  .rbc-menu-toggle {
+    display: flex;
+    order: -1;
   }
 
-  .action-wrapper {
-    position: relative;
-    height: 100%;
-
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: none;
-      padding: 0;
-      background-color: transparent;
-      height: 100%;
-      width: 64px;
-
-      .icon {
-        width: 24px;
-        height: 24px;
-      }
-
-      .text {
-        display: block;
-        width: 0;
-        height: 0;
-        overflow: hidden;
-      }
-    }
-  }
-
-  .breadcrumbs {
+  .rbc-utility-row {
     display: none;
   }
 
-  .menu,
-  .mega-menu {
-    padding-bottom: var(--grid-gutter-width);
-
-    .default-content {
-      margin: 0;
-
-      > :first-child {
-        margin-top: 0;
-      }
-
-      > :last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    li {
-      margin-block: 12px;
-    }
-
-    ul:not(:has(+ *)) {
-      li:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    .section {
-      margin-block: 24px;
-    }
-
-    &.language {
-      max-width: var(--grid-container-width);
-      margin: 0 auto;
-
-      .section {
-        margin: 0;
-      }
-    }
+  .rbc-brand-row {
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 64px;
+    padding: 8px 24px;
   }
 
-  .brand-section {
-    grid-area: brand;
-
-    .default-content {
-      height: var(--header-height);
-      display: flex;
-      justify-content: space-between;
-
-      p,
-      a {
-        display: flex;
-        align-items: center;
-        position: relative;
-        font-size: var(--heading-font-size-m);
-        font-weight: 700;
-        text-decoration: none;
-        margin: 0;
-        color: var(--color-brand);
-
-        img {
-          height: var(--logo-height);
-        }
-
-        svg {
-          width: var(--logo-width);
-          height: var(--logo-height);
-        }
-
-        .brand-text {
-          display: block;
-          width: 0;
-          height: 0;
-          overflow: hidden;
-        }
-      }
-    }
-
-    .action-wrapper {
-      right: -23px; /* 64 minus waffle icon inset */
-    }
+  /* Brand bar (logo + hamburger) always shows; nav lists collapse. */
+  .rbc-brand-row > ul,
+  .rbc-product-row {
+    display: none;
+    width: 100%;
+    flex-basis: 100%;
   }
 
-  .actions-section {
-    grid-area: actions;
-    max-height: 64px;
-    overflow: hidden;
-    transition: all 0.2s ease-in-out;
-
-    > .default-content {
-      display: flex;
-      justify-content: end;
-      align-items: center;
-    }
-
-    > .block-content {
-      border-bottom: 1px solid light-dark(var(--color-gray-200), var(--color-gray-600));
-    }
-
-    .action-wrapper {
-      height: var(--header-height);
-      right: -13px;
-
-      button {
-        width: 44px;
-      }
-    }
-
-    &.is-open {
-      overflow: scroll;
-      max-height: 100%;
-    }
+  header.is-mobile-open .rbc-brand-row > ul,
+  header.is-mobile-open .rbc-product-row {
+    display: block;
   }
 
-  .main-nav-section {
-    grid-area: nav;
-
-    .default-content {
-      max-width: 100%;
-      margin: 0;
-    }
-
-    .main-nav-item {
-      border-bottom: 1px solid light-dark(var(--color-gray-200), var(--color-gray-600));
-
-      > * {
-        max-width: var(--grid-container-width);
-        margin: 0 auto;
-      }
-    }
-
-    .main-nav-link {
-      display: block;
-      line-height: 64px;
-    }
-
-    .menu,
-    .mega-menu {
-      display: none;
-    }
-
-    .is-open {
-      .main-nav-link {
-        border-bottom: 1px solid light-dark(var(--color-gray-200), var(--color-gray-600));
-      }
-
-      .menu,
-      .mega-menu {
-        display: block;
-      }
-    }
+  header.is-mobile-open .rbc-product-row {
+    height: auto;
   }
 
-  &.is-mobile-open {
-    height: initial;
-    max-height: initial;
-    overflow: initial;
-    bottom: 0;
-
-    .header-content {
-      height: 100%;
-    }
-
-    .brand-section {
-      border-bottom: 1px solid light-dark(var(--color-gray-200), var(--color-gray-600));
-    }
+  header.is-mobile-open .rbc-brand-row > ul > li,
+  header.is-mobile-open .rbc-product-row > ul > li {
+    border-bottom: 1px solid #eee;
   }
-}
 
-@media (width >= 900px) {
-  header {
-    overflow: initial;
+  header.is-mobile-open .rbc-brand-row > ul > li > p > a,
+  header.is-mobile-open .rbc-brand-row > ul > li > p,
+  header.is-mobile-open .rbc-brand-row > ul + ul a,
+  header.is-mobile-open .rbc-product-row > ul > li > p > a,
+  header.is-mobile-open .rbc-product-row > ul > li > p {
+    line-height: 2.8;
+    display: block;
+  }
 
-    .header-content {
-      max-width: var(--grid-container-width);
-      margin: 0 auto;
-      grid-template: "brand nav actions" 1fr / auto 1fr auto;
-      gap: var(--spacing-l);
-    }
+  header.is-mobile-open .rbc-product-row > ul {
+    display: block;
+    width: 100%;
+  }
 
-    .menu,
-    .mega-menu {
-      background-color: var(--color-shaded);
-      padding: var(--spacing-xl) 0;
-      position: absolute;
-      left: 0;
-      right: 0;
+  header.is-mobile-open .rbc-brand-row .sign-in {
+    line-height: 1.4;
+    text-align: center;
+    margin: 8px 0;
+  }
 
-      &.language {
-        display: none;
-        max-width: initial;
-        margin: 0;
-        width: 180px;
-        background-color: var(--color-shaded);
-        padding: var(--spacing-xl);
-        position: absolute;
-        left: auto;
-        right: 0;
-        z-index: 1001;
-      }
-    }
-
-    .mega-menu {
-      > .fragment-content {
-        display: grid;
-        grid-template-columns: repeat(var(--mega-columns), 1fr);
-        max-width: var(--grid-container-width);
-        margin: 0 auto;
-
-        .section {
-          margin-block: initial;
-        }
-      }
-    }
-
-    .brand-section {
-      border-bottom: initial;
-
-      .default-content {
-        max-width: initial;
-        margin: 0;
-      }
-
-      .action-wrapper.more {
-        display: none;
-      }
-    }
-
-    .main-nav-section {
-      .main-nav-list {
-        display: flex;
-        gap: var(--spacing-l);
-      }
-
-      .main-nav-item {
-        border-bottom: initial;
-
-        > * {
-          max-width: initial;
-          margin: initial;
-        }
-
-        &.is-open {
-          .main-nav-link {
-            border-bottom: initial;
-          }
-        }
-      }
-    }
-
-    .actions-section {
-      position: relative;
-      overflow: initial;
-
-      .default-content {
-        max-width: initial;
-        margin: 0;
-      }
-
-      .action-wrapper {
-        position: relative;
-        right: -10px;
-      }
-
-      .block-content {
-        border-bottom: initial;
-      }
-
-      &.is-open {
-        overflow: initial;
-
-        .menu.language {
-          display: block;
-        }
-      }
-    }
-
-    &.is-mobile-open {
-      bottom: initial;
-
-      .header-content {
-        height: initial;
-      }
-    }
+  .rbc-header .has-dropdown > ul {
+    position: static;
+    box-shadow: none;
+    border: none;
+    padding-left: 16px;
   }
 }

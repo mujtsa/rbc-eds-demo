@@ -1,30 +1,32 @@
 import { getConfig, getMetadata } from '../../scripts/ak.js';
-import { loadFragment } from '../fragment/fragment.js';
+
+const { locale } = getConfig();
 
 const FOOTER_PATH = '/fragments/nav/footer';
 
-/**
- * loads and decorates the footer
- * @param {Element} el The footer element
- */
+async function fetchFragment(path) {
+  let resp = await fetch(`/content${path}.plain.html`);
+  if (!resp.ok) resp = await fetch(`${path}.plain.html`);
+  if (!resp.ok) resp = await fetch(path);
+  if (!resp.ok) throw Error(`Couldn't fetch ${path}`);
+  const html = await resp.text();
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.querySelectorAll('main > div');
+}
+
 export default async function init(el) {
-  const { locale } = getConfig();
   const footerMeta = getMetadata('footer');
   const path = footerMeta || FOOTER_PATH;
-  try {
-    const fragment = await loadFragment(`${locale.prefix}${path}`);
-    fragment.classList.add('footer-content');
+  const sections = await fetchFragment(`${locale.prefix}${path}`);
 
-    const sections = [...fragment.querySelectorAll('.section')];
+  const inner = document.createElement('div');
+  inner.className = 'rbc-footer';
+  sections.forEach((section) => inner.append(section));
 
-    const copyright = sections.pop();
-    copyright.classList.add('section-copyright');
+  inner.querySelector('.footer-links')?.classList.add('rbc-footer-links');
+  inner.querySelector('.footer-social')?.classList.add('rbc-footer-social');
+  inner.querySelector('.footer-legal')?.classList.add('rbc-footer-legal');
+  inner.querySelector('.footer-copyright')?.classList.add('rbc-footer-copyright');
 
-    const legal = sections.pop();
-    legal.classList.add('section-legal');
-
-    el.append(fragment);
-  } catch (e) {
-    throw Error(e);
-  }
+  el.append(inner);
 }

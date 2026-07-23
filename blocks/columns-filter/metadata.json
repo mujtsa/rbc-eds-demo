@@ -1,0 +1,37 @@
+{
+  "variantName": "columns-filter",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-07-23T17:47:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.rbcroyalbank.com/credit-cards/all-credit-cards-p.html",
+    "originPage": "RBC All Credit Cards browse page - category filter bar",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "filter",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "label + row of category filter links",
+    "buttonCount": 7,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "horizontal category filter tab rows",
+      "single-row link/pill navigation bars"
+    ],
+    "notSuitableFor": [
+      "content columns with images",
+      "sort/results toolbars"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/credit-cards/all-credit-cards-p"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-23T17:47:00.000Z"
+  }
+}

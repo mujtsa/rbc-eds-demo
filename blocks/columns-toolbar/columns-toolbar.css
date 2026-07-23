@@ -1,0 +1,104 @@
+/* Block: columns-toolbar -- results toolbar (count + filters trigger | sort label + dropdown) */
+
+/* Values extracted from source #cards-filter .app-toolbar computed styles. */
+
+/* Row: mobile stacks, desktop is a single space-between row */
+.columns-toolbar > div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--body-font-family);
+  color: var(--text-color);
+}
+
+/* Left group: "Showing N cards" + "Card Filters (0)" */
+.columns-toolbar-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+}
+
+.columns-toolbar-left p {
+  margin: 0;
+}
+
+.columns-toolbar-count {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--text-color);
+}
+
+.columns-toolbar-filters {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--link-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.columns-toolbar-filters:hover {
+  color: var(--link-hover-color);
+}
+
+/* Right group: "Sort by:" label + dropdown */
+.columns-toolbar-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.columns-toolbar-sort-label {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+/* Pseudo-select: bordered box with chevron, matching source select */
+.columns-toolbar-select {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 50px;
+  padding: 10px 45px 10px 10px;
+  border: 1px solid rgb(111 111 111);
+  border-radius: 0;
+  background-color: rgb(255 255 255);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 28px;
+  color: var(--text-color);
+  position: relative;
+}
+
+/* Chevron arrow */
+.columns-toolbar-select::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: -6px;
+  border-right: 2px solid rgb(37 37 37);
+  border-bottom: 2px solid rgb(37 37 37);
+  transform: rotate(45deg);
+}
+
+@media (width >= 900px) {
+  .columns-toolbar > div {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .columns-toolbar-select {
+    min-width: 330px;
+  }
+}

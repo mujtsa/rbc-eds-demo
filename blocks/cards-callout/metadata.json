@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-callout",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-07-23T17:47:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.rbcroyalbank.com/credit-cards/all-credit-cards-p.html",
+    "originPage": "RBC All Credit Cards browse page - 'How to Apply' section",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "accent",
+    "density": "compact",
+    "purpose": "feature",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "icon + heading + paragraph + optional-CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "how-to / next-step callout rows",
+      "3-up colored promotional callouts",
+      "icon + short text + link tiles"
+    ],
+    "notSuitableFor": [
+      "large product tiles with images",
+      "long-form content cards"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/credit-cards/all-credit-cards-p"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-23T17:47:00.000Z"
+  }
+}

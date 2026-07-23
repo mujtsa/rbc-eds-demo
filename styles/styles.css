@@ -1,3 +1,5 @@
+@import url('brand.css');
+
 @font-face {
   font-family: Montserrat;
   font-style: normal;
@@ -159,24 +161,26 @@
   --color-dark-base: 0 0 0;
   --color-light: rgb(255 255 255);
   --color-dark: rgb(0 0 0);
-  --color-text: light-dark(var(--color-dark), var(--color-light));
-  --color-link: light-dark(var(--color-gray-900), var(--color-gray-100));
-  --color-brand: var(--color-purple-500);
-  --color-accent: light-dark(var(--color-magenta-600), var(--color-magenta-500));
-  --color-background: light-dark(var(--color-light), var(--color-dark));
-  --color-shaded: light-dark(#f9f9f9, #111);
+  --color-text: var(--text-color);
+  --color-link: var(--link-color);
+  --color-link-hover: var(--link-hover-color);
+  --color-brand: var(--link-color);
+  --color-accent: var(--link-color);
+  --color-background: var(--background-color);
+  --color-shaded: var(--section-light-bg);
 
   /* fonts */
-  --font-family: montserrat, "Trebuchet MS", sans-serif;
+  --font-family: var(--body-font-family);
+  --heading-family: var(--heading-font-family);
 
   /* headings */
-  --heading-font-size-xxl: 32.44px;
-  --heading-font-size-xl: 28.83px;
-  --heading-font-size-l: 25.63px;
-  --heading-font-size-m: 22.78px;
-  --heading-font-size-s: 20.25px;
-  --heading-font-size-xs: 18px;
-  --heading-line-height: 1.15;
+  --heading-font-size-xxl: var(--heading-size-xxl);
+  --heading-font-size-xl: var(--heading-size-xl);
+  --heading-font-size-l: var(--heading-size-l);
+  --heading-font-size-m: var(--heading-size-m);
+  --heading-font-size-s: var(--heading-size-s);
+  --heading-font-size-xs: var(--heading-size-xs);
+  --heading-line-height: 1.2;
 
   /* body */
   --body-font-size-xxxl: 25px;
@@ -209,7 +213,7 @@ body {
   margin: 0;
   background-color: var(--color-background);
   color: var(--color-text);
-  font-family: "Trebuchet MS", sans-serif;
+  font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   line-height: var(--body-line-height);
   padding: var(--header-height) 0 0;
@@ -238,6 +242,10 @@ header {
 
 a {
   color: var(--color-link);
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
 
   &.btn {
     display: inline-block;
@@ -295,13 +303,38 @@ a {
   }
 }
 
+/* EDS button reset — plain text links by default */
+main .button-container { display: inline; }
+
+main a.button:any-link {
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: var(--link-color);
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+  white-space: normal;
+}
+
+main a.button:any-link:hover {
+  color: var(--link-hover-color);
+}
+
 /* sections */
 .section {
   display: block;
 
-  > .default-content {
+  > .default-content,
+  > .block-content {
     max-width: var(--grid-container-width);
     margin: 0 auto;
+  }
+
+  &.light {
+    background-color: var(--section-light-bg);
   }
 }
 
@@ -332,8 +365,16 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
+  font-family: var(--heading-family);
+  font-weight: 500;
   line-height: var(--heading-line-height);
+  color: var(--text-color);
+}
+
+/* Default content: RBC page H1 renders in brand blue */
+main .default-content h1 {
+  color: var(--link-color);
+  line-height: 48px;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }

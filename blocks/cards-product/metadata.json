@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-product",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-07-23T17:47:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.rbcroyalbank.com/credit-cards/all-credit-cards-p.html",
+    "originPage": "RBC All Credit Cards browse page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "product",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + title + annual-fee + offer + features + rates + CTAs",
+    "buttonCount": 3,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "product listing / catalog grids",
+      "credit card or financial product tiles",
+      "feature-rich comparable item grids"
+    ],
+    "notSuitableFor": [
+      "simple text-only card lists",
+      "small icon callouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/credit-cards/all-credit-cards-p"],
+    "reuseCount": 1,
+    "lastUsed": "2026-07-23T17:47:00.000Z"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "metadata": {
+    "projectType": "da"
+  },
+  "templates": [
+    {
+      "name": "all-credit-cards",
+      "urls": [
+        "https://www.rbcroyalbank.com/credit-cards/all-credit-cards-p.html"
+      ],
+      "representativeUrl": "https://www.rbcroyalbank.com/credit-cards/all-credit-cards-p.html",
+      "coverageGaps": [],
+      "description": "Credit cards listing page with category filters, a filterable grid of card offerings, and a how-to-apply callouts section, plus site header and footer.",
+      "blocks": [
+        {
+          "name": "columns-filter",
+          "instances": ["#categories-filter"]
+        },
+        {
+          "name": "columns-toolbar",
+          "instances": ["#cards-filter"]
+        },
+        {
+          "name": "cards-product",
+          "instances": ["#card-grid-container"]
+        },
+        {
+          "name": "cards-callout",
+          "instances": ["#tool_callouts .grid-wpr.eh-wpr"]
+        }
+      ],
+      "sections": [
+        {
+          "id": "sticky-wrapper",
+          "name": "Page Title",
+          "selector": "#sticky-wrapper",
+          "style": null,
+          "blocks": [],
+          "defaultContent": ["#sticky-wrapper h1"]
+        },
+        {
+          "id": "categories-filter",
+          "name": "Category Filter",
+          "selector": "#categories-filter",
+          "style": null,
+          "blocks": ["columns-filter"],
+          "defaultContent": []
+        },
+        {
+          "id": "cards-filter",
+          "name": "Results Toolbar",
+          "selector": "#cards-filter",
+          "style": null,
+          "blocks": ["columns-toolbar"],
+          "defaultContent": []
+        },
+        {
+          "id": "card-grid",
+          "name": "Credit Card Grid",
+          "selector": ["#card-grid-container", "#dvl-wpr > main > section:nth-of-type(3)"],
+          "style": null,
+          "blocks": ["cards-product"],
+          "defaultContent": []
+        },
+        {
+          "id": "tool-callouts",
+          "name": "How To Apply Callouts",
+          "selector": "#tool_callouts",
+          "style": null,
+          "blocks": ["cards-callout"],
+          "defaultContent": ["#tool_callouts .how-to-apply-title"]
+        }
+      ]
+    }
+  ]
+}

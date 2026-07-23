@@ -1,0 +1,69 @@
+/* Block: columns-filter -- horizontal category filter row */
+
+/* Values extracted from source computed styles on rbcroyalbank.com #categories-filter */
+
+/* Section band: the source wraps this filter in a full-bleed light-blue band
+   (section background rgb(237,247,252) == --section-light-bg, 30px vertical padding).
+   Scope it to the section that contains this block so it stays block-local. */
+.section:has(> .block-content > .columns-filter),
+.section:has(> .columns-filter-wrapper > .columns-filter) {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: var(--section-light-bg, rgb(237 247 252));
+}
+
+/* Row: label + pills laid out in a wrapping horizontal flex line */
+.columns-filter > div {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Leading "Filter by Category:" label */
+.columns-filter > div > .columns-filter-label {
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  color: var(--text-color);
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Each pill cell just wraps its link; no extra box styling */
+.columns-filter > div > .columns-filter-pill {
+  display: flex;
+}
+
+/* Pill links */
+.columns-filter .columns-filter-btn:any-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  border: 1px solid rgb(179 179 179);
+  border-radius: 20px;
+  background: none;
+  color: var(--link-color);
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.columns-filter .columns-filter-btn:any-link:hover,
+.columns-filter .columns-filter-btn:any-link:focus {
+  border-color: var(--link-color);
+  color: var(--link-hover-color);
+}
+
+.columns-filter .columns-filter-btn.active {
+  border-color: var(--link-color);
+  color: var(--link-color);
+  background-color: rgb(237 247 252);
+}
