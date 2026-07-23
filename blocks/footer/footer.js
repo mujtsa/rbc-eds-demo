@@ -29,10 +29,27 @@ export default async function init(el) {
   // Sections are positional (authoring classes are stripped by DA/EDS):
   // 0 = link columns, 1 = social, 2 = legal, 3 = copyright.
   const [links, social, legal, copyright] = rows;
-  links?.classList.add('rbc-footer-links');
   social?.classList.add('rbc-footer-social');
   legal?.classList.add('rbc-footer-legal');
   copyright?.classList.add('rbc-footer-copyright');
+
+  // The link-columns section flattens to h3 + ul pairs directly (DA/EDS strips
+  // the per-column wrapper divs). Re-wrap each h3 + ul pair into a column.
+  if (links) {
+    links.classList.add('rbc-footer-links');
+    const columns = [];
+    let current = null;
+    [...links.children].forEach((child) => {
+      if (child.tagName === 'H3') {
+        current = document.createElement('div');
+        columns.push(current);
+        current.append(child);
+      } else if (current) {
+        current.append(child);
+      }
+    });
+    columns.forEach((col) => links.append(col));
+  }
 
   el.append(inner);
 }
