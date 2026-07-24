@@ -20,9 +20,12 @@ function applyFilter(filter) {
   items.forEach((li) => {
     const cat = norm(li.dataset.category);
     let match = showAll || cat === filter;
-    // Special data-driven filters.
+    // Special data-driven filter: "No Annual Fee" = cards whose annual-fee
+    // line is exactly $0 (read the fee paragraph, not the whole tile text).
     if (!showAll && filter === 'no annual fee') {
-      match = /\$0(\b|$)/.test(li.textContent);
+      const feeText = li.querySelector('.cards-product-annual-fee')?.textContent || '';
+      const feeVal = feeText.replace(/^annual fee:?\s*/i, '').trim();
+      match = /^\$0(\.0+)?$/.test(feeVal);
     }
     li.style.display = match ? '' : 'none';
     if (match) visible += 1;
