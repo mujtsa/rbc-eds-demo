@@ -76,9 +76,8 @@ function renderCardFromData(row) {
     apply.textContent = 'Apply Now';
     ctas.append(apply);
   }
-  if (ctas.children.length) body.append(ctas);
-
   // Compare checkbox (registered with the shared compare controller).
+  // Rendered above the Apply Now CTA bar.
   if (row.id) {
     const compare = document.createElement('label');
     compare.className = 'cards-product-compare';
@@ -93,6 +92,8 @@ function renderCardFromData(row) {
       input,
     );
   }
+
+  if (ctas.children.length) body.append(ctas);
 
   li.append(body);
   li.dataset.category = (row.category || '').toLowerCase();

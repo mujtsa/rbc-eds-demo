@@ -177,9 +177,9 @@
   text-align: center;
 }
 
-/* Push the Apply bar to the bottom of the card and bleed to card edges */
+/* Apply bar bleeds to card edges and sits directly below the Compare row */
 .cards-product .cards-product-card-body .cards-product-apply {
-  margin: auto -20px -24px;
+  margin: 0 -20px -24px;
   padding-top: 15px;
 }
 
@@ -215,13 +215,13 @@
   }
 }
 
-/* --- Compare checkbox on each card --- */
+/* --- Compare checkbox on each card (sits just above the Apply bar) --- */
 .cards-product-compare {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 16px;
-  padding-top: 12px;
+  margin-top: auto;
+  padding: 12px 0;
   border-top: 1px solid rgb(224 224 224);
   font-size: 14px;
   font-weight: 500;
