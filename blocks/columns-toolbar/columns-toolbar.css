@@ -59,10 +59,8 @@
   white-space: nowrap;
 }
 
-/* Pseudo-select: bordered box with chevron, matching source select */
+/* Native select styled to match the source: bordered box + chevron */
 .columns-toolbar-select {
-  display: inline-flex;
-  align-items: center;
   box-sizing: border-box;
   min-height: 50px;
   padding: 10px 45px 10px 10px;
@@ -73,21 +71,18 @@
   font-weight: 300;
   line-height: 28px;
   color: var(--text-color);
-  position: relative;
-}
+  cursor: pointer;
 
-/* Chevron arrow */
-.columns-toolbar-select::after {
-  content: "";
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  width: 10px;
-  height: 10px;
-  margin-top: -6px;
-  border-right: 2px solid rgb(37 37 37);
-  border-bottom: 2px solid rgb(37 37 37);
-  transform: rotate(45deg);
+  /* Custom chevron via background image (::after doesn't render on <select>). */
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgb(37 37 37) 50%),
+    linear-gradient(135deg, rgb(37 37 37) 50%, transparent 50%);
+  background-position:
+    right 20px center,
+    right 14px center;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
 }
 
 @media (width >= 900px) {
