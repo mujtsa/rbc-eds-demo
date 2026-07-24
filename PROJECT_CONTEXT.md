@@ -101,3 +101,48 @@ below it.
    tokens). AEM Code Sync auto-deploys.
 3. Content (pages, the sheet) lives in **DA**, not the repo — publish via
    `POST admin.da.live/source/...` then `POST admin.hlx.page/preview|live/...` (see AGENTS.md).
+
+## Universal Editor component definitions (xwalk scaffolding)
+
+The repo contains **xwalk-style component definitions** so blocks have a UE-readable catalog. This was
+added **additively** — it does NOT change the runtime or content source, so the live DA site is
+unaffected.
+
+### What's here
+
+| Path | Role |
+|------|------|
+| `models/_component-definition.json`, `_component-models.json`, `_component-filters.json` | **Collectors** — reference the primitives + glob `../blocks/*/_*.json` |
+| `models/_page.json`, `_section.json`, `_text.json`, `_title.json`, `_image.json`, `_button.json` | Core primitive component models |
+| `blocks/<block>/_<block>.json` | Per-block UE models (definitions / models / filters) |
+| `component-definition.json`, `component-models.json`, `component-filters.json` (repo root) | **Generated** — merged output UE actually reads. Do not hand-edit. |
+
+Per-block models exist for: `cards-product`, `cards-callout`, `columns-filter`, `columns-toolbar`,
+`columns`, `hero`, `fragment`. (No `cards` model — this repo uses a singular `card` block, not the
+xwalk `cards`.)
+
+### Rebuilding
+
+After editing any `_*.json` model or collector, regenerate the root files:
+
+```
+npm run build:json
+```
+
+This runs `merge-json-cli` over the three collectors (via `npm-run-all`). Both are `devDependencies`.
+The root `component-*.json` files are committed (UE reads them from the deployed repo).
+
+### ⚠️ Critical caveat — UE editing does NOT work in this repo yet
+
+Component definitions are only **one of three** things Universal Editor needs. The other two are
+deliberately **absent** because adding them would break the DA site:
+
+| Piece | State here | Why not added |
+|-------|-----------|---------------|
+| Component definitions (`component-*.json`) | ✅ present | Additive, harmless |
+| Instrumented runtime (`aem.js` + `editor-support.js` emitting `data-aue-*`) | ❌ absent — this repo uses AuthorKit `ak.js`, which emits no instrumentation | Swapping the runtime changes how the live DA site renders |
+| UE content source (`fstab.yaml` → an AEM Author instance via `bin/franklin.delivery`) | ❌ absent — `fstab.yaml` points at `content.da.live` | Repointing disconnects the DA content source |
+
+So the definitions here serve as a **catalog / reference**. For a working end-to-end UE demo, use the
+separate **`rbc-eds-xwalk`** repo, which has all three pieces (definitions + instrumented runtime +
+AEM Author content source). One repo cannot serve both the DA and UE authoring models at once.
