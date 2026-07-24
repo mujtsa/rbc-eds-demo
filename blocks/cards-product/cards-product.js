@@ -1,3 +1,5 @@
+import { register as registerCompare } from './compare.js';
+
 function createOptimizedPicture(src, alt = '') {
   // DA-hosted media_ URLs are already optimized by the EDS pipeline; external
   // URLs are used as-is. A plain <img> keeps this block runtime-agnostic.
@@ -75,6 +77,22 @@ function renderCardFromData(row) {
     ctas.append(apply);
   }
   if (ctas.children.length) body.append(ctas);
+
+  // Compare checkbox (registered with the shared compare controller).
+  if (row.id) {
+    const compare = document.createElement('label');
+    compare.className = 'cards-product-compare';
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    const text = document.createElement('span');
+    text.textContent = 'Compare';
+    compare.append(input, text);
+    body.append(compare);
+    registerCompare(
+      { id: row.id, title: row.title || '', image: row.image || '' },
+      input,
+    );
+  }
 
   li.append(body);
   li.dataset.category = (row.category || '').toLowerCase();

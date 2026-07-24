@@ -214,3 +214,154 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* --- Compare checkbox on each card --- */
+.cards-product-compare {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgb(224 224 224);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--link-color);
+  cursor: pointer;
+}
+
+.cards-product-compare input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--link-color);
+  cursor: pointer;
+}
+
+.cards-product-compare.is-disabled {
+  color: rgb(150 150 150);
+  cursor: not-allowed;
+}
+
+.cards-product-compare.is-disabled input {
+  cursor: not-allowed;
+}
+
+/* --- Compare tray (fixed bottom bar) --- */
+.compare-tray {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 900;
+  background-color: #fff;
+  border-top: 3px solid #005daa;
+  box-shadow: 0 -2px 12px rgb(0 0 0 / 15%);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.compare-tray.is-visible {
+  transform: translateY(0);
+}
+
+.compare-tray-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.compare-tray-title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-size: 18px;
+  font-weight: 500;
+  color: #005daa;
+  white-space: nowrap;
+}
+
+.compare-tray-slots {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+}
+
+.compare-tray-slot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 160px;
+  min-height: 48px;
+  padding: 8px 12px;
+  border: 1px dashed rgb(179 179 179);
+  border-radius: 6px;
+  font-size: 13px;
+  color: rgb(111 111 111);
+}
+
+.compare-tray-slot.filled {
+  border-style: solid;
+  border-color: #005daa;
+  color: var(--text-color);
+}
+
+.compare-tray-slot img {
+  width: 40px;
+  height: auto;
+}
+
+.compare-tray-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.compare-tray-plus {
+  font-size: 20px;
+  color: #005daa;
+}
+
+.compare-tray-remove {
+  border: none;
+  background: none;
+  font-size: 20px;
+  line-height: 1;
+  color: rgb(111 111 111);
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.compare-tray-remove:hover {
+  color: #005daa;
+}
+
+.compare-tray-btn {
+  display: inline-block;
+  background-color: #005daa;
+  color: #fff;
+  padding: 12px 32px;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.compare-tray-btn.is-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  background-color: rgb(179 179 179);
+}
+
+@media (width < 768px) {
+  .compare-tray-inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .compare-tray-slots {
+    flex-basis: 100%;
+    overflow-x: auto;
+  }
+}
