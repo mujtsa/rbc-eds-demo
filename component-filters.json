@@ -13,7 +13,10 @@
       "button",
       "title",
       "hero",
-      "cards",
+      "cards-product",
+      "cards-callout",
+      "columns-filter",
+      "columns-toolbar",
       "columns",
       "fragment"
     ]
